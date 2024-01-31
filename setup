@@ -1,0 +1,23 @@
+!#/usr/bin/env bash
+
+# this script is for setting up symbolic links to the dotfiles
+
+
+### bashrc loading 
+BASHFILE='$HOME/.bashrc'
+if [ ! -f "${BASHFILE}" ]; then
+	# if regular file exists delete and symlink
+	rm "${BASHFILE}"
+	ln -s $HOME/dotfiles/.bashrc "${BASHFILE}"
+elif [ ! -L "${BASHFILE}" ]; then	
+	# if symlink file exists
+	# noop
+fi
+# reload bashfile
+source "${BASHFILE}"
+
+### package loading
+
+pkgs=( 'wget'  'screen' )
+sudo apt update
+sudo apt -y --ignore-missing "${pkgs[@]}"

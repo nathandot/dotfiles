@@ -7,17 +7,27 @@
 BASHFILE='$HOME/.bashrc'
 if [ ! -f "${BASHFILE}" ]; then
 	# if regular file exists delete and symlink
-	rm "${BASHFILE}"
+	ln -nsf $HOME/dotfiles/.bashrc "${BASHFILE}"
+elif [ ! -e "${BASHFILE}" ]; then
+	# if file does not exist just create symlink
 	ln -s $HOME/dotfiles/.bashrc "${BASHFILE}"
-elif [ ! -L "${BASHFILE}" ]; then	
-	# if symlink file exists
-	# noop
 fi
 # reload bashfile
 source "${BASHFILE}"
 
+### vimrc loading
+VIMFILE='$HOME/.vimrc'
+if [ ! -f "${VIMFILE}" ]; then
+	# if regular file exists delete and symlink
+	ln -nsf $HOME/dotfiles/.vimrc "${VIMFILE}"
+elif [ ! -e "${VIMFILE}" ]; then
+	ln -s $HOME/dotfiles/.vimrc "${VIMFILE}"
+fi
+
 ### package loading
 
-pkgs=( 'wget'  'screen' )
+pkgs=( 'wget'  'screen' 'vim' )
 sudo apt update
 sudo apt -y --ignore-missing "${pkgs[@]}"
+
+

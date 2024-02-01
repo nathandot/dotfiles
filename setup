@@ -1,11 +1,11 @@
-!#/usr/bin/env bash
+#!/usr/bin/env bash
 
 # this script is for setting up symbolic links to the dotfiles
 
 
 ### bashrc loading 
-BASHFILE='$HOME/.bashrc'
-if [ ! -f "${BASHFILE}" ]; then
+BASHFILE=$HOME/.bashrc
+if [ ! -L "${BASHFILE}" ]; then
 	# if regular file exists delete and symlink
 	ln -nsf $HOME/dotfiles/.bashrc "${BASHFILE}"
 elif [ ! -e "${BASHFILE}" ]; then
@@ -16,8 +16,8 @@ fi
 source "${BASHFILE}"
 
 ### vimrc loading
-VIMFILE='$HOME/.vimrc'
-if [ ! -f "${VIMFILE}" ]; then
+VIMFILE=$HOME/.vimrc
+if [ ! -L "${VIMFILE}" ]; then
 	# if regular file exists delete and symlink
 	ln -nsf $HOME/dotfiles/.vimrc "${VIMFILE}"
 elif [ ! -e "${VIMFILE}" ]; then

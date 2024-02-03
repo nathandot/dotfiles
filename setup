@@ -28,6 +28,6 @@ fi
 
 pkgs=( 'wget'  'screen' 'vim' )
 sudo apt update
-sudo apt -y --ignore-missing "${pkgs[@]}"
+sudo apt install -y --ignore-missing "${pkgs[@]}"
 
 

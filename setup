@@ -26,7 +26,7 @@ fi
 
 ### package loading
 
-pkgs=( 'wget'  'screen' 'vim' )
+pkgs=( 'wget' 'screen' 'vim')
 sudo apt update
 sudo apt install -y --ignore-missing "${pkgs[@]}"
 
